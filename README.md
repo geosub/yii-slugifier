@@ -30,5 +30,5 @@ or
 
 ## Usage
 ```php
-Yii::app()->slug->getSlug("Прове р каСл агифа^^ера");
+echo Yii::app()->slug->getSlug("Прове р каСл агифа^^ера");
 ```
