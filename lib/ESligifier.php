@@ -16,7 +16,7 @@
 class ESligifier extends CApplicationComponent
 {
 	public $delimiter = "-";
-	public $rules = "Any-Latin; NFD; [\\u0100-\\u7fff] remove; [:Nonspacing Mark:] Remove; NFC; [:Punctuation:] Remove; Lower();";
+	public $rules = 'Any-Latin; NFD; [\u0000-\u001f\u0021-\u002d\u003a-\u0040\u005e\u0060\u007a-\u7fff] Remove; [:Nonspacing Mark:] Remove; [:Punctuation:] Remove; NFC; Lower();';
 
 	public function init()
 	{
@@ -31,13 +31,17 @@ class ESligifier extends CApplicationComponent
 	public function getSlug($stringToSlug)
 	{
 		if (empty($stringToSlug)) {
-			throw new CException(500, "Empty string for slugging");
+			throw new CException("Empty string for slugging");
+		}
+		$t12r = Transliterator::create($this->rules);
+		if (is_null($t12r)) {
+			throw new CException("Incorrect rules for transliterating.\nRules: [ {$this->rules} ]");
 		}
 
-		$slug = Transliterator::create($this->rules)->transliterate($stringToSlug);
+		$slug = $t12r->transliterate($stringToSlug);
 
 		if (empty($slug)) {
-			throw new CException(500, "Empty slug in result. Check Slugged string. UTF-8 required encoding.");
+			throw new CException("Empty slug in result. Check Slugged string. UTF-8 required encoding.");
 		}
 
 		return trim(preg_replace('/[-\s]+/', $this->delimiter, $slug), $this->delimiter);
