@@ -1,27 +1,21 @@
 <?php
 /**
- * Class ESligifier
- * Translate unsave string to save for URL and FILENAME
+ * Yii-Slugifier
+ * Translate unsafe string to save for URL and FILENAME
  *
  * @author geosub <geosub@gmail.com>
- * @link https://github.com/muayyad-alsadi/yii-EClientScript
- * @license http://www.yiiframework.com/license/
  * @version 1.0
+ */
+
+/**
+ * Class ESligifier
  *
  * @property string $delimiter
  * @property string $rules
  */
-
-
 class ESligifier extends CApplicationComponent
 {
-	/**
-	 * @var string
-	 */
 	public $delimiter = "-";
-	/**
-	 * @var string
-	 */
 	public $rules = "Any-Latin; NFD; [\\u0100-\\u7fff] remove; [:Nonspacing Mark:] Remove; NFC; [:Punctuation:] Remove; Lower();";
 
 	public function init()

@@ -1,5 +1,5 @@
 # Yii Slugifier component
-Translate unsave string to save for URL and FILENAME
+Translate unsafe string to save for URL and FILENAME
 
 ## Requirements
 * Yii 1.1.x or above
