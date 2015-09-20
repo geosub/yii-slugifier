@@ -13,7 +13,7 @@
   },
   "autoload": {
     "classmap" : [
-      "lib/ESligifier.php",
+      "lib/ESligifier.php"
     ]
   }
 }
