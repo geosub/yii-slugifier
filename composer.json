@@ -1,0 +1,27 @@
+{
+    "name": "geosub/yii-slugifier",
+    "description": "Yii Extension to translate unsave string to save for url and filename",
+    "type": "library",
+    "keywords": [
+        "yii",
+        "slug",
+        "url",
+        "transliterator",
+        "Transliterate"
+    ],
+    "authors": [
+        {
+            "name": "geosub",
+            "email": "geosub@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+		"ext-intl" : "*"
+    },
+    "autoload": {
+        "files": ["src/ESligifier.php"]
+    },
+    "minimum-stability": "dev"
+}
+
