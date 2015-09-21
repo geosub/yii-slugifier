@@ -24,22 +24,29 @@ class ESligifier extends CApplicationComponent
 	}
 
 	/**
-	 * @param string $stringToSlug
+	 * @param string $stringToSantize
 	 * @return string
 	 * @throws CException
 	 */
-	public function getSlug($stringToSlug)
+	private function sanitize($stringToSantize)
 	{
-		if (empty($stringToSlug)) {
-			throw new CException(500, "Empty string for slugging");
-		}
 
-		$slug = Transliterator::create($this->rules)->transliterate($stringToSlug);
+		$slug = Transliterator::create($this->rules)->transliterate($stringToSantize);
 
 		if (empty($slug)) {
-			throw new CException(500, "Empty slug in result. Check Slugged string. UTF-8 required encoding.");
+			throw new CException("Empty santized result. Check input string for encoding, UTF-8 is required.");
 		}
 
 		return trim(preg_replace('/[-\s]+/', $this->delimiter, $slug), $this->delimiter);
 	}
+
+	public function getSantized($stringToSantize)
+	{
+		if (empty($stringToSantize)) {
+			throw new CException("Empty string for santize");
+		}
+
+		return $this->sanitize($stringToSantize);
+	}
+
 }
